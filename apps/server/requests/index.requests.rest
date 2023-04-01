@@ -1,0 +1,12 @@
+GET http://localhost:8080/trpc/sayHi
+
+###
+
+
+
+POST  http://localhost:8080/trpc/log
+Content-Type: application/json
+
+{
+    "input": "hi dev"
+}
