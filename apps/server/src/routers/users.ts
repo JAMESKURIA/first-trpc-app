@@ -1,4 +1,4 @@
-import trpc from '@app/lib/trpc'
+import trpc from '../lib/trpc'
 
 const userRouter = trpc.router({
     getUser: trpc.procedure.query(() => {
