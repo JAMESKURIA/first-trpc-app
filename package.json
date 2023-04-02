@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nx run-many --target=dev --all"
+    "dev": "nx run-many --target=dev --all",
+    "preinstall": "npx only-allow pnpm",
+    "setup": "pnpm install"
   },
   "keywords": [],
   "author": "",

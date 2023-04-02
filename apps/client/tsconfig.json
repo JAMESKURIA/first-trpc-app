@@ -21,6 +21,6 @@
       "components/*": ["./src/components/*"]
     }
   },
-  "include": [".eslintrc.cjs", "src"],
+  "include": [".eslintrc.cjs", "src", "decs.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -2,8 +2,18 @@ import { trpc } from '@app/utils/trpc'
 import ReactJson from 'react-json-view'
 
 const Product = () => {
-    const query = trpc.sayHi.useQuery()
-    const userQuery = trpc.users.getUser.useQuery()
+    const userQuery = trpc.users.getAll.useQuery()
+
+    const updateUserMutation = trpc.users.update.useMutation()
+
+    function updateUser() {
+        updateUserMutation.mutate(
+            { id: 1, name: 'James' },
+            {
+                onSuccess: (data) => console.log({ data }),
+            }
+        )
+    }
 
     return (
         <>
@@ -11,8 +21,14 @@ const Product = () => {
             <div>
                 Product: <ReactJson src={userQuery.data as object} />
             </div>
-            <button type="button" onClick={() => userQuery.refetch()}>
-                click me
+
+            <h3>Mutation status: {updateUserMutation.status}</h3>
+            <div>
+                Update result:{' '}
+                <ReactJson src={updateUserMutation.data as object} />
+            </div>
+            <button type="button" onClick={updateUser}>
+                Update User
             </button>
         </>
     )

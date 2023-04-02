@@ -2,6 +2,7 @@ import { createExpressMiddleware } from '@trpc/server/adapters/express'
 import cors from 'cors'
 import express from 'express'
 import { CORS_WHITELISTED_URLS } from './lib/config'
+import createContext from './lib/context'
 import logger from './logger/index.logger'
 import appRouter from './routers'
 
@@ -23,7 +24,13 @@ const corsOptions: cors.CorsOptions = {
 
 app.use(cors(corsOptions))
 
-app.use('/trpc', createExpressMiddleware({ router: appRouter }))
+app.use(
+    '/trpc',
+    createExpressMiddleware({
+        router: appRouter,
+        createContext,
+    })
+)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => logger.info(`Server listening on port ${PORT}`))
